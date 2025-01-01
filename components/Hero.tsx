@@ -1,4 +1,5 @@
 import { FaLocationArrow } from "react-icons/fa6";
+import { socialMedia } from "@/data";
 
 import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/Spotlight";
@@ -6,7 +7,7 @@ import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 const Hero = () => {
   return (
-    <div className="pb-20 pt-36 bg-black-100 text-white">
+    <div className="pb-20 pt-36 bg-black-100 text-white" id="/">
       {/**
        *  UI: Spotlights
        *  Link: https://ui.aceternity.com/components/spotlight
@@ -65,10 +66,23 @@ const Hero = () => {
           <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-50">
             Passionate about writing clean, efficient code.
           </p>
+          <div className="flex items-center md:gap-3 gap-6 pt-4">
+            {socialMedia.map((info) => (
+              <a
+                key={info.id}
+                href={info.link} // Link to the respective social media
+                target="_blank" // Opens the link in a new tab
+                rel="noopener noreferrer" // Security measure
+                className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300 transition-all duration-300 hover:bg-purple-500"
+              >
+                <img src={info.img} alt="icons" width={20} height={20} />
+              </a>
+            ))}
+          </div>
 
           <a href="#about">
             <MagicButton
-              title="About me"
+              title="Show my work"
               icon={<FaLocationArrow />}
               position="right"
             />

@@ -5,18 +5,21 @@ import MagicButton from "./MagicButton";
 
 const Footer = () => {
   return (
-    <footer className="w-full pt-20 pb-10" id="contact">
-      {/* background grid */}
-      <div className="w-full absolute left-0 -bottom-72 min-h-96">
-        <img
-          src="/footer-grid.svg"
-          alt="grid"
-          className="w-full h-full opacity-50 "
-        />
+    <footer className="w-full pb-10 mb-[100px] md:md-5" id="contact">
+      <div className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
+        {/* Background Glow */}
+        <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl opacity-20"></div>
+
+        {/* Gradient Separator */}
+        <div className="flex justify-center -translate-y-[1px]">
+          <div className="w-3/4">
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-col items-center">
-        <h1 className="heading lg:max-w-[45vw]">
+        <h1 className="heading lg:max-w-[45vw] text-white-100">
           Ready to take <span className="text-purple">your</span> digital
           presence to the next level?
         </h1>
@@ -34,17 +37,20 @@ const Footer = () => {
       </div>
       <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
         <p className="md:text-base text-sm md:font-normal font-light">
-          Copyright © 2024 Adrian Hajdin
+          Copyright © 2025 Sanjeev veerapandian
         </p>
 
-        <div className="flex items-center md:gap-3 gap-6">
+        <div className="flex items-center md:gap-3 gap-6 pt-4">
           {socialMedia.map((info) => (
-            <div
+            <a
               key={info.id}
-              className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300"
+              href={info.link} // Link to the respective social media
+              target="_blank" // Opens the link in a new tab
+              rel="noopener noreferrer" // Security measure
+              className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200 rounded-lg border border-black-300 transition-all duration-300 hover:bg-purple-500"
             >
               <img src={info.img} alt="icons" width={20} height={20} />
-            </div>
+            </a>
           ))}
         </div>
       </div>

@@ -6,8 +6,19 @@ import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
 const Approach = () => {
   return (
     <section className="w-full py-20">
-      <h1 className="heading">
-        My <span className="text-purple">approach</span>
+      <div className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
+        {/* Background Glow */}
+        <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl opacity-20"></div>
+
+        {/* Gradient Separator */}
+        <div className="flex justify-center -translate-y-[1px]">
+          <div className="w-3/4">
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
+          </div>
+        </div>
+      </div>
+      <h1 className="heading text-white-100">
+        My <span className="text-purple">Approach</span>
       </h1>
       {/* remove bg-white dark:bg-black */}
       <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
