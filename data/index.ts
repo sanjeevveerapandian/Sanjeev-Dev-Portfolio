@@ -8,10 +8,11 @@ export const navItems = [
 export const gridItems = [
   {
     id: 1,
-    title: "I prioritize client collaboration, fostering open communication ",
-    description: "",
-    className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
-    imgClassName: "w-full h-full",
+    title: "Tech enthusiast with a passion for development.",
+    description:
+      "Exploring new technologies.",
+    className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[70vh]", // Slightly bigger size
+    imgClassName: "w-full h-full object-cover", // Maintain the full height and width, but ensure the aspect ratio is kept
     titleClassName: "justify-end",
     img: "/b1.svg",
     spareImg: "",
@@ -38,7 +39,7 @@ export const gridItems = [
   },
   {
     id: 4,
-    title: "Tech enthusiast with a passion for development.",
+    title: " ",
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1",
     imgClassName: "",
@@ -49,10 +50,12 @@ export const gridItems = [
 
   {
     id: 5,
-    title: "Currently building a JS Animation library",
-    description: "The Inside Scoop",
+    title:
+      "Currently learning Data Structures in Java to strengthen my problem-solving skills.",
+    description: "Understanding the Core of Algorithms",
     className: "md:col-span-3 md:row-span-2",
-    imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
+    imgClassName:
+      "absolute right-0 md:left-[65%] bottom-0 md:w-[500px] w-[400px]", // Move to the right
     titleClassName: "justify-center md:justify-start lg:justify-center",
     img: "/b5.svg",
     spareImg: "/grid.svg",
