@@ -112,29 +112,29 @@ export const projects = [
 export const workExperience = [
   {
     id: 1,
-    title: "Frontend Engineer Intern",
-    desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
+    title: "Frontend Intern - KANINI Software Solutions",
+    desc: "Worked as an Intern at KANINI Software Solutions in Product Engineering Department using ReactJS, Bootstrap",
     className: "md:col-span-2",
     thumbnail: "/exp1.svg",
   },
   {
     id: 2,
-    title: "Mobile App Dev - JSM Tech",
-    desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
+    title: "Full-Stack Intern - Ogrelix",
+    desc: "I worked on a real-time project using React.js, Laravel, and MySQL for an Electronics Service Company.",
     className: "md:col-span-2", // change to md:col-span-2
     thumbnail: "/exp2.svg",
   },
   {
     id: 3,
-    title: "Freelance App Dev Project",
-    desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
+    title: "Freelance Web - Dev Project",
+    desc: "Did the dev of a web-page for a client, from initial concept to deployment on web.",
     className: "md:col-span-2", // change to md:col-span-2
     thumbnail: "/exp3.svg",
   },
   {
     id: 4,
-    title: "Lead Frontend Developer",
-    desc: "Developed and maintained user-facing features using modern frontend technologies.",
+    title: "Developing a Project for myself",
+    desc: "Started a project on creating a Portfolio Builder, with using modern frontend technologies.",
     className: "md:col-span-2",
     thumbnail: "/exp4.svg",
   },
@@ -155,5 +155,10 @@ export const socialMedia = [
     id: 3,
     img: "/link.svg",
     link: "https://www.linkedin.com/in/sanjeev-veerapandian-43692a243/", // Add the LinkedIn URL here
+  },
+  {
+    id: 4,
+    img: "leet.svg",
+    link: "https://leetcode.com/u/sanjeevveerapandian/",
   },
 ];

@@ -59,7 +59,7 @@ const Hero = () => {
            *  Update text size for better responsiveness in dark mode
            */}
           <TextGenerateEffect
-            words=" Hi! I'm Sanjeev , a Full-Stack Developer"
+            words="Hi! I'm Sanjeev Veerapandian, a Full-Stack Developer"
             className="text-center text-[40px] md:text-5xl lg:text-6xl"
           />
 
@@ -80,9 +80,13 @@ const Hero = () => {
             ))}
           </div>
 
-          <a href="#about">
+          <a
+            href="https://drive.google.com/file/d/1rvX0_TN3d82cK8n3Wu41krgrWDlhZqwZ/view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <MagicButton
-              title="Show my work"
+              title="View Resume"
               icon={<FaLocationArrow />}
               position="right"
             />

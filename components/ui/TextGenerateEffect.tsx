@@ -2,6 +2,8 @@
 import { useEffect } from "react";
 import { motion, stagger, useAnimate } from "framer-motion";
 import { cn } from "@/lib/utils";
+import React from "react";
+
 
 export const TextGenerateEffect = ({
   words,
@@ -31,14 +33,18 @@ export const TextGenerateEffect = ({
       <motion.div ref={scope}>
         {wordsArray.map((word, idx) => {
           return (
-            <motion.span
-              key={word + idx}
-              // change here if idx is greater than 3, change the text color to #CBACF9
-              className={` ${idx > 3 ? "text-purple" : "dark:text-white text-white"
+            <React.Fragment key={word + idx}>
+              {idx === 5 && <br />} {/* Add a line break when idx reaches 5 */}
+              <motion.span
+                className={` ${
+                  idx > 4
+                    ? "text-purple text-[40px] md:text-5xl lg:text-6xl"
+                    : "dark:text-white text-white text-[30 px] md:text-[40px] lg:text-[50px]"
                 } opacity-0`}
-            >
-              {word}{" "}
-            </motion.span>
+              >
+                {word}{" "}
+              </motion.span>
+            </React.Fragment>
           );
         })}
       </motion.div>
