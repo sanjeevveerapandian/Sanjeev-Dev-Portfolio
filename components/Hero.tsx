@@ -79,18 +79,19 @@ const Hero = () => {
               </a>
             ))}
           </div>
-
-          <a
-            href="https://drive.google.com/file/d/1rvX0_TN3d82cK8n3Wu41krgrWDlhZqwZ/view"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <MagicButton
-              title="View Resume"
-              icon={<FaLocationArrow />}
-              position="right"
-            />
-          </a>
+          <div className="mt-4">
+            <a
+              href="https://drive.google.com/file/d/1rvX0_TN3d82cK8n3Wu41krgrWDlhZqwZ/view"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MagicButton
+                title="View Resume"
+                icon={<FaLocationArrow />}
+                position="right"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>

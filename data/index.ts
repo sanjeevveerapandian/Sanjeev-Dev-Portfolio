@@ -57,7 +57,7 @@ export const gridItems = [
     description: "Understanding the Core of Algorithms",
     className: "md:col-span-3 md:row-span-2 p-4 overflow-hidden", // Add padding and hide overflow
     imgClassName:
-      "absolute right-0 md:left-[65%] bottom-0 md:w-[500px] w-[400px] max-w-full", // Ensure the image fits inside the card
+      "absolute right-0 md:left-[65%] bottom-0 md:w-[500px] w-[100%] max-w-full hidden sm:block", // Hide SVG on mobile view (sm and below)
     titleClassName: "justify-center md:justify-start lg:justify-center",
     img: "/b5.svg",
     spareImg: "/grid.svg",
@@ -80,7 +80,7 @@ export const projects = [
     title: "Kanini Assessment and Workspace-Frontend",
     des: "As a trainee in the Product Development Engineering Department at KANINI Software Solutions, I developed a responsive Assessment and Workspace Frontend Webpage using React.js and Bootstrap. My work included creating reusable components, implementing real-time data rendering, and designing a user-friendly interface for managing tasks and assessments. This project enhanced my skills in React development and responsive design..",
     img: "/p1.png",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
+    iconLists: ["/js.svg", "/re.svg", "/tail.svg", "/git.svg"],
     link: "/ui.earth.com",
   },
   {
@@ -88,7 +88,7 @@ export const projects = [
     title: "Kanini Workspace-Frontend",
     des: "As a trainee in the Product Development Engineering Department at KANINI Software Solutions, I developed a responsive Workspace Frontend Webpage using React.js and Bootstrap. My work included creating reusable components, implementing real-time data rendering, and designing a user-friendly interface for managing tasks and assessments. This project enhanced my skills in React development and responsive design..",
     img: "/p2.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
+    iconLists: ["/js.svg", "/re.svg", "/bstrap.svg", "/git.svg"],
     link: "/ui.yoom.com",
   },
   {
@@ -96,15 +96,27 @@ export const projects = [
     title: "Ambulance Connector App",
     des: "I developed an Ambulance Connector App consisting of separate apps for patients and drivers. When activated, the patients location is instantly shared with the nearest driver, who is guided to transport the patient to the closest private or government hospital. This solution ensures swift emergency response and seamless coordinatione",
     img: "/p3.svg",
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
+    iconLists: [
+      "/js.svg",
+      "/re.svg",
+      "/tail.svg",
+      "/svg/skills/firebase.svg",
+      "/git.svg",
+    ],
     link: "/ui.aiimg.com",
   },
   {
     id: 4,
-    title: "Finance Management Dashboard",
-    des: "A Finance Management Dashboard built with Next.js 14 that integrates multiple bank accounts, providing users with a centralized platform to view real-time transactions. It allows seamless transfer of funds between users, ensuring secure and efficient money management, all within a user-friendly interface. This dashboard makes it easier to track financial activity and manage transactions in one place.",
+    title: "Webpage - Mss-chennai.in",
+    des: "Created a website for a company, with ReactJS, Tailwind, Laravel, Mysql for their services provided by them ",
     img: "/p4.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
+    iconLists: [
+      "/re.svg",
+      "/tail.svg",
+      "/laravel.svg",
+      "/svg/skills/mysql.svg",
+      "/git.svg",
+    ],
     link: "/ui.apple.com",
   },
 ];
@@ -134,7 +146,7 @@ export const workExperience = [
   {
     id: 4,
     title: "Developing a Project for myself",
-    desc: "Started a project on creating a Portfolio Builder, with using modern frontend technologies.",
+    desc: "Started a project on creating a Portfolio Builder, with using modern frontend technologies and a full-stack Banking-Web App.",
     className: "md:col-span-2",
     thumbnail: "/exp4.svg",
   },
