@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Update to Next.js logo */}
-        <link rel="icon" href="/profile.png" sizes="any" />
+        <link rel="icon" href="/profile.jpg" sizes="any" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
