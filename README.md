@@ -48,8 +48,10 @@ Before you begin, make sure you have these installed:
    git clone https://github.com/your-username/portfolio.git
    cd portfolio
 2. Install the dependencies:
+   ```bash
    npm install
 3. Run the project locally:
+   ```bash
    npm run dev
 
 ## 💼 Let's Connect
