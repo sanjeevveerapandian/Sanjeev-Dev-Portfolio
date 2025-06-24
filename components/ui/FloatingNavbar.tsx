@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 export const FloatingNav = ({
   navItems,
@@ -21,6 +22,9 @@ export const FloatingNav = ({
   }[];
   className?: string;
 }) => {
+  const sectionIds = ["home", "about", "projects", "skills", "contact"];
+  const activeId = useActiveSection(sectionIds);
+
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
 
@@ -54,13 +58,28 @@ export const FloatingNav = ({
       >
         {navItems.map((navItem, idx) => {
           const Icon = navItem.icon;
+          const targetId = navItem.link.replace("#", ""); // clean ID from #about → about
+          const isActive = activeId === targetId;
+
           return (
             <Link
               key={`nav-${idx}`}
               href={navItem.link}
-              className="flex items-center gap-2 text-neutral-300 hover:text-white transition-colors text-sm font-medium"
+              className={cn(
+                "flex items-center gap-2 transition-colors text-sm font-medium",
+                isActive
+                  ? "text-orange-400"
+                  : "text-neutral-300 hover:text-white"
+              )}
             >
-              {Icon && <Icon className="text-lg text-white" />}
+              {Icon && (
+                <Icon
+                  className={cn(
+                    "text-lg",
+                    isActive ? "text-orange-400" : "text-white"
+                  )}
+                />
+              )}
               <span className="hidden sm:inline">{navItem.name}</span>
             </Link>
           );

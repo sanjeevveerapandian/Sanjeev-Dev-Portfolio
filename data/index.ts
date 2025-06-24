@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 
 // Instead of putting JSX like <AiFillHome />, assign the component reference
 export const navItems = [
-  { name: "", link: "#/", icon: AiFillHome },
+  { name: "", link: "#home", icon: AiFillHome },
   { name: "", link: "#about", icon: FaUser },
   { name: "", link: "#projects", icon: FaProjectDiagram },
   { name: "", link: "#skills", icon: RiCodeSSlashFill },
