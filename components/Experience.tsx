@@ -9,35 +9,35 @@ const workExperience = [
   {
     id: 1,
     title: "Part-time Developer – Ogrelix (Current)",
-    desc: "Since September 2024, contributing to production-level features, fixing bugs, enhancing UI/UX, and integrating REST APIs. Collaborating closely with the product team to improve platform reliability.",
+    desc: "Since September 2024, contributing to production-level features, fixing bugs, enhancing UI/UX, and integrating REST APIs.",
     period: "Sept 2024 – Present",
     icon: <MdWork className="text-2xl text-orange-400" />,
   },
   {
     id: 2,
     title: "Frontend Intern – KANINI Software Solutions",
-    desc: "Completed a 1-month internship in July 2024. Built reusable components using React.js and Bootstrap in the Product Engineering Department.",
+    desc: "Built reusable components using React.js and Bootstrap in the Product Engineering Department.",
     period: "July 2024",
     icon: <FaLaptopCode className="text-2xl text-orange-400" />,
   },
   {
     id: 3,
     title: "Full-Stack Intern – Ogrelix",
-    desc: "Developed a full-stack web application using React.js, Laravel, and MySQL. Focused on frontend dashboard and backend logic for a service-based electronics company.",
+    desc: "Developed a full-stack web app using React.js, Laravel, and MySQL for a service-based electronics company.",
     period: "June 2024",
     icon: <FaLaptopCode className="text-2xl text-orange-400" />,
   },
   {
     id: 4,
     title: "B.E. Computer Science – Panimalar Engineering College",
-    desc: "Pursuing Bachelor of Engineering in Computer Science and Engineering.",
+    desc: "Pursuing Bachelor of Engineering in CSE.",
     period: "2022 – 2026",
     icon: <FaUserGraduate className="text-2xl text-orange-400" />,
   },
   {
     id: 5,
     title: "HSE & SSLC – Zion Matric Hr. Sec. School",
-    desc: "Completed higher secondary and school education with strong academic performance.",
+    desc: "Completed school education with strong academics.",
     period: "2010 – 2022",
     icon: <FaSchool className="text-2xl text-orange-400" />,
   },
@@ -55,7 +55,7 @@ const Experience = () => {
 
   return (
     <>
-      {/* Decorative Line Above */}
+      {/* Decorative Top Line */}
       <div className="flex justify-center -translate-y-[1px]">
         <div className="w-3/4">
           <div className="h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent w-full" />
@@ -68,16 +68,17 @@ const Experience = () => {
         </h2>
 
         <div className="relative max-w-5xl mx-auto">
-          {/* Glowing Timeline Line */}
+          {/* Timeline Line */}
           <motion.div
             style={{ height: timelineHeight }}
-            className="absolute top-0 left-1/2 w-[4px] -translate-x-1/2 z-0 rounded-full
-              bg-[linear-gradient(to_bottom,_#f59e0b,_#fbbf24,_#fde68a)]
+            className="
+              absolute top-0 w-[4px] rounded-full z-0
+              bg-[linear-gradient(to_bottom,#f59e0b,#fbbf24,#fde68a)]
               shadow-[0_0_25px_6px_rgba(253,186,116,0.3)]
-              animate-glow"
+              left-6 sm:left-6 md:left-6 lg:left-1/2 lg:-translate-x-1/2
+            "
           />
 
-          {/* Timeline Items */}
           <div className="flex flex-col gap-20 relative z-10">
             {workExperience.map((item, index) => {
               const alignLeft = index % 2 === 0;
@@ -93,41 +94,51 @@ const Experience = () => {
                     delay: index * 0.1,
                   }}
                   viewport={{ once: true }}
-                  className={`relative flex flex-col lg:flex-row ${
-                    alignLeft
-                      ? "lg:items-end lg:justify-start"
-                      : "lg:items-start lg:justify-end"
-                  } gap-6`}
-                >
-                  {/* Connector Line */}
-                  <div
-                    className={`absolute top-6 w-[50%] h-[2px] bg-gradient-to-r ${
+                  className={`
+                    relative flex flex-col
+                    ${
                       alignLeft
-                        ? "right-1/2 from-orange-400 to-transparent"
-                        : "left-1/2 from-transparent to-orange-400"
-                    }`}
+                        ? "lg:flex-row lg:items-end lg:justify-start"
+                        : "lg:flex-row lg:items-start lg:justify-end"
+                    }
+                    sm:pl-12 gap-6
+                  `}
+                >
+                  {/* Connector Line (Only on lg+) */}
+                  <div
+                    className={`
+                      hidden lg:block absolute top-6 w-[50%] h-[2px] bg-gradient-to-r
+                      ${
+                        alignLeft
+                          ? "right-1/2 from-orange-400 to-transparent"
+                          : "left-1/2 from-transparent to-orange-400"
+                      }
+                    `}
                   />
 
                   {/* Dot */}
-                  <span className="absolute top-6 left-1/2 -translate-x-1/2 w-4 h-4 bg-orange-300 border-4 border-white rounded-full z-10 shadow-lg" />
+                  <span
+                    className="
+                      absolute top-6 w-4 h-4 bg-orange-300 border-4 border-white rounded-full shadow-lg z-10
+                      left-6 sm:left-6 md:left-6 lg:left-1/2 lg:-translate-x-1/2
+                    "
+                  />
 
-                  {/* Content */}
+                  {/* Content Card */}
                   <div
                     className={`w-full lg:w-[45%] ${
-                      alignLeft ? "lg:pr-10 text-left" : "lg:pl-10 text-left"
-                    }`}
+                      alignLeft ? "lg:pr-10" : "lg:pl-10"
+                    } text-left`}
                   >
                     <div className="flex items-start gap-4">
                       <div className="mt-1">{item.icon}</div>
                       <div>
-                        <h3 className="text-xl font-semibold text-white mb-1">
+                        <h3 className="text-xl font-semibold mb-1">
                           {item.title}
                         </h3>
-                        {item.period && (
-                          <p className="text-xs italic text-gray-400 mb-1">
-                            {item.period}
-                          </p>
-                        )}
+                        <p className="text-xs italic text-gray-400 mb-1">
+                          {item.period}
+                        </p>
                         <p className="text-sm text-gray-400 leading-relaxed">
                           {item.desc}
                         </p>

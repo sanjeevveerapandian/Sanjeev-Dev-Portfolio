@@ -45,12 +45,15 @@ const Achievements = () => {
         </h2>
 
         <div className="relative max-w-5xl mx-auto">
+          {/* Timeline Line */}
           <motion.div
             style={{ height: timelineHeight }}
-            className="absolute top-0 left-1/2 w-[4px] -translate-x-1/2 z-0 rounded-full
-              bg-[linear-gradient(to_bottom,_#f59e0b,_#fbbf24,_#fde68a)]
+            className={`
+              absolute top-0 w-[4px] rounded-full z-0
+              bg-[linear-gradient(to_bottom,#f59e0b,#fbbf24,#fde68a)]
               shadow-[0_0_25px_6px_rgba(253,186,116,0.3)]
-              animate-glow"
+              left-4 sm:left-4 md:left-4 lg:left-1/2 lg:-translate-x-1/2
+            `}
           />
 
           <div className="flex flex-col gap-20 relative z-10">
@@ -68,34 +71,39 @@ const Achievements = () => {
                     delay: index * 0.1,
                   }}
                   viewport={{ once: true }}
-                  className={`relative flex flex-col lg:flex-row ${
+                  className={`relative flex flex-col ${
                     alignLeft
-                      ? "lg:items-end lg:justify-start"
-                      : "lg:items-start lg:justify-end"
-                  } gap-6`}
+                      ? "lg:flex-row lg:items-end lg:justify-start"
+                      : "lg:flex-row lg:items-start lg:justify-end"
+                  } gap-6 pl-12 lg:pl-0`}
                 >
-                  {/* Connector Branch */}
+                  {/* Connector line (only on lg+) */}
                   <div
-                    className={`absolute top-6 w-[50%] h-[2px] bg-gradient-to-r ${
+                    className={`absolute top-6 w-[50%] h-[2px] bg-gradient-to-r hidden lg:block ${
                       alignLeft
                         ? "right-1/2 from-orange-400 to-transparent"
                         : "left-1/2 from-transparent to-orange-400"
                     }`}
                   />
 
-                  {/* Dot at branch */}
-                  <span className="absolute top-6 left-1/2 -translate-x-1/2 w-4 h-4 bg-orange-300 border-4 border-white rounded-full z-10 shadow-lg" />
+                  {/* Dot (left on mobile, center on lg) */}
+                  <span
+                    className={`
+                      absolute top-6 z-10 w-4 h-4 rounded-full border-4 border-white bg-orange-300 shadow-lg
+                      left-4 lg:left-1/2 lg:-translate-x-1/2
+                    `}
+                  />
 
                   {/* Content */}
                   <div
                     className={`w-full lg:w-[45%] ${
-                      alignLeft ? "lg:pr-10 text-left" : "lg:pl-10 text-left"
-                    }`}
+                      alignLeft ? "lg:pr-10" : "lg:pl-10"
+                    } text-left`}
                   >
                     <div className="flex items-start gap-4">
                       <item.icon className="w-10 h-10 text-orange-400" />
                       <div>
-                        <h3 className="text-xl font-semibold text-white mb-1">
+                        <h3 className="text-xl font-semibold mb-1">
                           {item.title}
                         </h3>
                         <p className="text-sm text-gray-400 mb-1">
