@@ -1,80 +1,69 @@
-// @flow strict
+"use client";
 
 import { skillsData } from "@/data/skills";
 import { skillsImage } from "@/data/skill-image";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
+import { motion } from "framer-motion";
 
-function Skills() {
+export default function Skills() {
   return (
-    <div
-      className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]"
+    <section
       id="skills"
+      className="relative z-50 my-12 lg:my-24 border-t border-[#352514]"
     >
-      {/* Background Glow */}
-      <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl opacity-20"></div>
+      {/* Decorative Glow */}
+      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-[100px] h-[100px] bg-violet-200 opacity-20 blur-3xl rounded-full" />
 
-      {/* Gradient Separator */}
+      {/* Gradient Line */}
       <div className="flex justify-center -translate-y-[1px]">
         <div className="w-3/4">
-          <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent w-full" />
         </div>
       </div>
 
-      {/* Skills Section Header */}
-      <div className="flex justify-center my-5 lg:py-8">
-        <div className="flex items-center">
-          <h1 className="heading text-white-100">
-            My
-            <span className="text-purple"> Skills</span>
-          </h1>
-        </div>
+      {/* Header */}
+      <div className="flex justify-center py-10">
+        <h2 className="heading text-white text-3xl sm:text-4xl font-bold text-center">
+          My <span className="text-orange-400">Skills</span>
+        </h2>
       </div>
 
-      {/* Skills Carousel */}
-      <div className="w-full mt-16 lg:mt-20 mb-12">
+      {/* Marquee Skill Cards */}
+      <div className="w-full mt-10 mb-12">
         <Marquee
           gradient={false}
-          speed={80}
-          pauseOnHover={true}
-          pauseOnClick={true}
-          delay={0}
-          play={true}
-          direction="left"
+          speed={60}
+          pauseOnHover
+          className="flex gap-6"
         >
-          {skillsData.map((skill, id) => (
-            <div
-              className="w-36 min-w-fit h-fit flex flex-col items-center justify-center transition-all duration-500 m-3 sm:m-5 rounded-lg group relative hover:scale-[1.15] cursor-pointer"
-              key={id}
+          {skillsData.map((skill, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              className="m-3 sm:m-5"
             >
-              <div className="h-full w-full rounded-lg border border-[#1f223c] bg-[#11152c] shadow-none shadow-gray-50 group-hover:border-violet-500 transition-all duration-500">
-                {/* Gradient Line */}
-                <div className="flex -translate-y-[1px] justify-center">
-                  <div className="w-3/4">
-                    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
-                  </div>
+              <div className="w-32 sm:w-36 h-32 sm:h-36 bg-gradient-to-br from-[#1f223c] to-[#11152c] border border-[#2a2d4a] backdrop-blur-md rounded-2xl shadow-md hover:shadow-purple-600/30 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center text-center">
+                <div className="h-10 sm:h-12">
+                  <Image
+                    src={skillsImage(skill)?.src || ""}
+                    alt={skill}
+                    width={48}
+                    height={48}
+                    className="h-full w-auto object-contain"
+                  />
                 </div>
-
-                {/* Skill Content */}
-                <div className="flex flex-col items-center justify-center gap-3 p-6">
-                  <div className="h-8 sm:h-10">
-                    <Image
-                      src={skillsImage(skill)?.src}
-                      alt={skill}
-                      width={40}
-                      height={40}
-                      className="h-full w-auto rounded-lg"
-                    />
-                  </div>
-                  <p className="text-white text-sm sm:text-lg">{skill}</p>
-                </div>
+                <p className="text-sm sm:text-base mt-3 text-white font-medium">
+                  {skill}
+                </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </Marquee>
       </div>
-    </div>
+    </section>
   );
 }
-
-export default Skills;

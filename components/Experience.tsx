@@ -1,65 +1,146 @@
-import React from "react";
+"use client";
 
-import { workExperience } from "@/data";
-import { Button } from "./ui/MovingBorders";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { FaLaptopCode, FaUserGraduate, FaSchool } from "react-icons/fa";
+import { MdWork } from "react-icons/md";
+
+const workExperience = [
+  {
+    id: 1,
+    title: "Part-time Developer – Ogrelix (Current)",
+    desc: "Since September 2024, contributing to production-level features, fixing bugs, enhancing UI/UX, and integrating REST APIs. Collaborating closely with the product team to improve platform reliability.",
+    period: "Sept 2024 – Present",
+    icon: <MdWork className="text-2xl text-orange-400" />,
+  },
+  {
+    id: 2,
+    title: "Frontend Intern – KANINI Software Solutions",
+    desc: "Completed a 1-month internship in July 2024. Built reusable components using React.js and Bootstrap in the Product Engineering Department.",
+    period: "July 2024",
+    icon: <FaLaptopCode className="text-2xl text-orange-400" />,
+  },
+  {
+    id: 3,
+    title: "Full-Stack Intern – Ogrelix",
+    desc: "Developed a full-stack web application using React.js, Laravel, and MySQL. Focused on frontend dashboard and backend logic for a service-based electronics company.",
+    period: "June 2024",
+    icon: <FaLaptopCode className="text-2xl text-orange-400" />,
+  },
+  {
+    id: 4,
+    title: "B.E. Computer Science – Panimalar Engineering College",
+    desc: "Pursuing Bachelor of Engineering in Computer Science and Engineering.",
+    period: "2022 – 2026",
+    icon: <FaUserGraduate className="text-2xl text-orange-400" />,
+  },
+  {
+    id: 5,
+    title: "HSE & SSLC – Zion Matric Hr. Sec. School",
+    desc: "Completed higher secondary and school education with strong academic performance.",
+    period: "2010 – 2022",
+    icon: <FaSchool className="text-2xl text-orange-400" />,
+  },
+];
 
 const Experience = () => {
-  return (
-    <div className="py-20 w-full">
-       <div className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
-      {/* Background Glow */}
-      <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl opacity-20"></div>
+  const ref = useRef(null);
 
-      {/* Gradient Separator */}
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const timelineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  return (
+    <>
+      {/* Decorative Line Above */}
       <div className="flex justify-center -translate-y-[1px]">
         <div className="w-3/4">
-          <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
-        </div> 
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent w-full" />
+        </div>
       </div>
-      </div>
-      
-      <h1 className="heading text-white-100">
-        My <span className="text-purple">Experience</span>
-      </h1>
 
-      <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10">
-        {workExperience.map((card) => (
-          <Button
-            key={card.id}
-            //   random duration will be fun , I think , may be not
-            duration={Math.floor(Math.random() * 10000) + 10000}
-            borderRadius="1.75rem"
-            style={{
-              //   add these two
-              //   you can generate the color from here https://cssgradient.io/
-              background: "rgb(4,7,29)",
-              backgroundColor:
-                "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-              // add this border radius to make it more rounded so that the moving border is more realistic
-              borderRadius: `calc(1.75rem* 0.96)`,
-            }}
-            // remove bg-white dark:bg-slate-900
-            className="flex-1 text-purple dark:text-white border-neutral-200 dark:border-slate-800"
-          >
-            <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
-              <img
-                src={card.thumbnail}
-                alt={card.thumbnail}
-                className="lg:w-32 md:w-20 w-16"
-              />
-              <div className="lg:ms-5">
-                <h1 className="text-start text-xl md:text-2xl font-bold">
-                  {card.title}
-                </h1>
-                <p className="text-start text-white-100 mt-3 font-semibold">
-                  {card.desc}
-                </p>
-              </div>
-            </div>
-          </Button>
-        ))}
-      </div>
-    </div>
+      <section ref={ref} className="py-24 px-4 sm:px-8 text-white">
+        <h2 className="text-center text-4xl font-bold tracking-tight mb-20">
+          My <span className="text-orange-400">Experience & Education</span>
+        </h2>
+
+        <div className="relative max-w-5xl mx-auto">
+          {/* Glowing Timeline Line */}
+          <motion.div
+            style={{ height: timelineHeight }}
+            className="absolute top-0 left-1/2 w-[4px] -translate-x-1/2 z-0 rounded-full
+              bg-[linear-gradient(to_bottom,_#f59e0b,_#fbbf24,_#fde68a)]
+              shadow-[0_0_25px_6px_rgba(253,186,116,0.3)]
+              animate-glow"
+          />
+
+          {/* Timeline Items */}
+          <div className="flex flex-col gap-20 relative z-10">
+            {workExperience.map((item, index) => {
+              const alignLeft = index % 2 === 0;
+
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "easeOut",
+                    delay: index * 0.1,
+                  }}
+                  viewport={{ once: true }}
+                  className={`relative flex flex-col lg:flex-row ${
+                    alignLeft
+                      ? "lg:items-end lg:justify-start"
+                      : "lg:items-start lg:justify-end"
+                  } gap-6`}
+                >
+                  {/* Connector Line */}
+                  <div
+                    className={`absolute top-6 w-[50%] h-[2px] bg-gradient-to-r ${
+                      alignLeft
+                        ? "right-1/2 from-orange-400 to-transparent"
+                        : "left-1/2 from-transparent to-orange-400"
+                    }`}
+                  />
+
+                  {/* Dot */}
+                  <span className="absolute top-6 left-1/2 -translate-x-1/2 w-4 h-4 bg-orange-300 border-4 border-white rounded-full z-10 shadow-lg" />
+
+                  {/* Content */}
+                  <div
+                    className={`w-full lg:w-[45%] ${
+                      alignLeft ? "lg:pr-10 text-left" : "lg:pl-10 text-left"
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="mt-1">{item.icon}</div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-white mb-1">
+                          {item.title}
+                        </h3>
+                        {item.period && (
+                          <p className="text-xs italic text-gray-400 mb-1">
+                            {item.period}
+                          </p>
+                        )}
+                        <p className="text-sm text-gray-400 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

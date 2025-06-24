@@ -1,186 +1,120 @@
-import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+"use client";
 
-import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { FaTrophy } from "react-icons/fa";
 
-const Approach = () => {
+const achievements = [
+  {
+    id: 1,
+    title: "Hackathon – VIT Innovation Challenge",
+    date: "2024",
+    desc: "Selected in Top 20 teams. Built a mobile app that connects patients with ambulance drivers and navigates them to the nearest hospital with the choice of Government or Private.",
+    icon: FaTrophy,
+  },
+  {
+    id: 2,
+    title: "Ideathon – Panimalar Engineering College",
+    date: "2022",
+    desc: "Secured Top 9 position and received a cash prize for proposing a mobile application idea to connect harvesters directly with large-scale markets, eliminating middlemen.",
+    icon: FaTrophy,
+  },
+];
+
+const Achievements = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const timelineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
-    <section className="w-full py-10">
-      <div className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
-        {/* Background Glow */}
-        <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl opacity-20"></div>
+    <>
+      {/* Decorative Line Above */}
+      <div className="flex justify-center -translate-y-[1px]">
+        <div className="w-3/4">
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent w-full" />
+        </div>
+      </div>
 
-        {/* Gradient Separator */}
-        <div className="flex justify-center -translate-y-[1px]">
-          <div className="w-3/4">
-            <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
+      <section ref={ref} className="py-24 px-4 sm:px-8 text-white">
+        <h2 className="text-center text-4xl font-bold tracking-tight mb-20">
+          My <span className="text-orange-400">Achievements</span>
+        </h2>
+
+        <div className="relative max-w-5xl mx-auto">
+          <motion.div
+            style={{ height: timelineHeight }}
+            className="absolute top-0 left-1/2 w-[4px] -translate-x-1/2 z-0 rounded-full
+              bg-[linear-gradient(to_bottom,_#f59e0b,_#fbbf24,_#fde68a)]
+              shadow-[0_0_25px_6px_rgba(253,186,116,0.3)]
+              animate-glow"
+          />
+
+          <div className="flex flex-col gap-20 relative z-10">
+            {achievements.map((item, index) => {
+              const alignLeft = index % 2 === 0;
+
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "easeOut",
+                    delay: index * 0.1,
+                  }}
+                  viewport={{ once: true }}
+                  className={`relative flex flex-col lg:flex-row ${
+                    alignLeft
+                      ? "lg:items-end lg:justify-start"
+                      : "lg:items-start lg:justify-end"
+                  } gap-6`}
+                >
+                  {/* Connector Branch */}
+                  <div
+                    className={`absolute top-6 w-[50%] h-[2px] bg-gradient-to-r ${
+                      alignLeft
+                        ? "right-1/2 from-orange-400 to-transparent"
+                        : "left-1/2 from-transparent to-orange-400"
+                    }`}
+                  />
+
+                  {/* Dot at branch */}
+                  <span className="absolute top-6 left-1/2 -translate-x-1/2 w-4 h-4 bg-orange-300 border-4 border-white rounded-full z-10 shadow-lg" />
+
+                  {/* Content */}
+                  <div
+                    className={`w-full lg:w-[45%] ${
+                      alignLeft ? "lg:pr-10 text-left" : "lg:pl-10 text-left"
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <item.icon className="w-10 h-10 text-orange-400" />
+                      <div>
+                        <h3 className="text-xl font-semibold text-white mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm text-gray-400 mb-1">
+                          {item.date}
+                        </p>
+                        <p className="text-sm text-gray-400 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
-      </div>
-      <h1 className="heading text-white-100">
-        My <span className="text-purple">Approach</span>
-      </h1>
-      {/* remove bg-white dark:bg-black */}
-      <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
-        {/* add des prop */}
-        <Card
-          title="Planning & Strategy"
-          icon={<AceternityIcon order="Phase 1" />}
-          des="In this phase, we work together to define the goals, target audience, and key features of your website. We'll focus on creating a clear site structure, user-friendly navigation, and identifying the content requirements to ensure everything aligns with your vision."
-        >
-          <CanvasRevealEffect
-            animationSpeed={5.1}
-            // add these classed for the border rounded overflowing -> rounded-3xl overflow-hidden
-            containerClassName="bg-emerald-900 rounded-3xl overflow-hidden"
-          />
-        </Card>
-        <Card
-          title="Development & Progress Update"
-          icon={<AceternityIcon order="Phase 2" />}
-          des="With the plan in place, I begin turning ideas into reality. From creating initial drafts to writing polished code, I ensure consistent communication with regular updates. Your feedback at each stage helps fine-tune the development process."
-        >
-          <CanvasRevealEffect
-            animationSpeed={3}
-            // change bg-black to bg-pink-900
-            containerClassName="bg-pink-900 rounded-3xl overflow-hidden"
-            colors={[
-              // change the colors of the
-              [255, 166, 158],
-              [221, 255, 247],
-            ]}
-            dotSize={2}
-          />
-          {/* Radial gradient for the cute fade */}
-          {/* remove this one */}
-          {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
-        </Card>
-        <Card
-          title="Final Development & Launch"
-          icon={<AceternityIcon order="Phase 3" />}
-          des="This is where everything comes together! Using the approved designs, I write clean, functional code to bring your website to life. Once it's ready, I’ll handle the final touches and assist with the smooth launch of your site."
-        >
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-sky-600 rounded-3xl overflow-hidden"
-            colors={[[125, 211, 252]]}
-          />
-        </Card>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
-export default Approach;
-
-const Card = ({
-  title,
-  icon,
-  children,
-  // add this one for the desc
-  des,
-}: {
-  title: string;
-  icon: React.ReactNode;
-  children?: React.ReactNode;
-  des: string;
-}) => {
-  const [hovered, setHovered] = React.useState(false);
-  return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      // change h-[30rem] to h-[35rem], add rounded-3xl
-      className="border border-black/[0.2] group/canvas-card flex items-center justify-center
-       dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 relative lg:h-[35rem] rounded-3xl "
-      style={{
-        //   add these two
-        //   you can generate the color from here https://cssgradient.io/
-        background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-      }}
-    >
-      {/* change to h-10 w-10 , add opacity-30  */}
-      <Icon className="absolute h-10 w-10 -top-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -top-3 -right-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -right-3 dark:text-white text-black opacity-30" />
-
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="h-full w-full absolute inset-0"
-          >
-            {children}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="relative z-20 px-10">
-        <div
-          // add this for making it center
-          // absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
-          className="text-center group-hover/canvas-card:-translate-y-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] 
-        group-hover/canvas-card:opacity-0 transition duration-200 min-w-40 mx-auto flex items-center justify-center"
-        >
-          {icon}
-        </div>
-        <h2
-          // change text-3xl, add text-center
-          className="dark:text-white text-center text-3xl opacity-0 group-hover/canvas-card:opacity-100
-         relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white 
-         group-hover/canvas-card:-translate-y-2 transition duration-200"
-        >
-          {title}
-        </h2>
-        {/* add this one for the description */}
-        <p
-          className="text-sm opacity-0 group-hover/canvas-card:opacity-100
-         relative z-10 mt-4 group-hover/canvas-card:text-white text-center
-         group-hover/canvas-card:-translate-y-2 transition duration-200"
-          style={{ color: "#E4ECFF" }}
-        >
-          {des}
-        </p>
-      </div>
-    </div>
-  );
-};
-// add order prop for the Phase number change
-const AceternityIcon = ({ order }: { order: string }) => {
-  return (
-    <div>
-     
-      <button className="relative inline-flex overflow-hidden rounded-full p-[1px] ">
-        <span
-          className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite]
-         bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"
-        />
-        <span
-          className="inline-flex h-full w-full cursor-pointer items-center 
-        justify-center rounded-full bg-slate-950 px-5 py-2 text-purple backdrop-blur-3xl font-bold text-2xl"
-        >
-          {order}
-        </span>
-      </button>
-    </div>
-  );
-};
-
-export const Icon = ({ className, ...rest }: any) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="currentColor"
-      className={className}
-      {...rest}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
-    </svg>
-  );
-};
+export default Achievements;

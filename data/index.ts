@@ -1,11 +1,15 @@
-import { link } from "fs";
+import { AiFillHome } from "react-icons/ai";
+import { FaUser, FaProjectDiagram } from "react-icons/fa";
+import { RiCodeSSlashFill } from "react-icons/ri";
+import { MdEmail } from "react-icons/md";
 
+// Instead of putting JSX like <AiFillHome />, assign the component reference
 export const navItems = [
-  // {name:"Home",link:"#/"},
-  { name: "About", link: "#about" },
-  { name: "Projects", link: "#projects" },
-  { name: "Skills", link: "#skills" },
-  { name: "Contact", link: "#contact" },
+  { name: "", link: "#/", icon: AiFillHome },
+  { name: "", link: "#about", icon: FaUser },
+  { name: "", link: "#projects", icon: FaProjectDiagram },
+  { name: "", link: "#skills", icon: RiCodeSSlashFill },
+  { name: "", link: "#contact", icon: MdEmail },
 ];
 
 export const gridItems = [
@@ -25,7 +29,7 @@ export const gridItems = [
     description: "",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
-    titleClassName: "justify-start",
+    titleClassName: "justify-start text-violet-400",
     img: "",
     spareImg: "",
   },
@@ -35,7 +39,7 @@ export const gridItems = [
     description: "I constantly try to improve",
     className: "lg:col-span-2 md:col-span-3 md:row-span-2",
     imgClassName: "",
-    titleClassName: "justify-center",
+    titleClassName: "justify-center text-orange-400",
     img: "",
     spareImg: "",
   },
@@ -76,39 +80,24 @@ export const gridItems = [
 
 export const projects = [
   {
-    id: 1,
-    title: "Kanini Assessment and Workspace-Frontend",
-    des: "As a trainee in the Product Development Engineering Department at KANINI Software Solutions, I developed a responsive Assessment and Workspace Frontend Webpage using React.js and Bootstrap. My work included creating reusable components, implementing real-time data rendering, and designing a user-friendly interface for managing tasks and assessments. This project enhanced my skills in React development and responsive design..",
-    img: "./p1.png",
-    iconLists: ["./js.svg", "./re.svg", "./tail.svg", "./git.svg"],
-    link: "/ui.earth.com",
-  },
-  {
-    id: 2,
-    title: "Kanini Workspace-Frontend",
-    des: "As a trainee in the Product Development Engineering Department at KANINI Software Solutions, I developed a responsive Workspace Frontend Webpage using React.js and Bootstrap. My work included creating reusable components, implementing real-time data rendering, and designing a user-friendly interface for managing tasks and assessments. This project enhanced my skills in React development and responsive design..",
-    img: "./p2.svg",
-    iconLists: ["./js.svg", "./re.svg", "./bstrap.svg", "./git.svg"],
-    link: "./ui.yoom.com",
-  },
-  {
-    id: 3,
-    title: "Ambulance Connector App",
-    des: "I developed an Ambulance Connector App consisting of separate apps for patients and drivers. When activated, the patients location is instantly shared with the nearest driver, who is guided to transport the patient to the closest private or government hospital. This solution ensures swift emergency response and seamless coordinatione",
-    img: "./p3.svg",
+    id: 5,
+    title: "AI Interview Prep Platform",
+    des: "Developed an AI-powered interview preparation app using Next.js, Firebase, and Vapi SDK. It simulates voice/video interviews with real-time question flow, feedback storage, and performance tracking.",
+    img: "./p5.png", // Ensure you place an appropriate image at public/p5.svg
     iconLists: [
-      "./js.svg",
-      "./re.svg",
+      "./next.svg",
       "./tail.svg",
       "./svg/skills/firebase.svg",
       "./git.svg",
+      // "./vapi.svg", // Optional: Add if you have a logo for Vapi SDK
     ],
-    link: "./ui.aiimg.com",
+    link: "./ui.interviewai.com", // Placeholder, update with your hosted link
+    github: "https://github.com/sanjeevveerapandian/AI-Interview-Prep", // Update this
   },
   {
     id: 4,
-    title: "Webpage - Mss-chennai.in",
-    des: "Created a website for a company, with ReactJS, Tailwind, Laravel, Mysql for their services provided by them ",
+    title: "MSS-Chennai Web Platform",
+    des: "Developed a complete Frontend platform using ReactJS, Tailwind CSS, Laravel, and MySQL for service-based operations of MSS Chennai.",
     img: "./p4.svg",
     iconLists: [
       "./re.svg",
@@ -117,40 +106,69 @@ export const projects = [
       "./svg/skills/mysql.svg",
       "./git.svg",
     ],
-    link: "./ui.apple.com",
-  },
-];
-
-export const workExperience = [
-  {
-    id: 1,
-    title: "Frontend Intern - KANINI Software Solutions",
-    desc: "Worked as an Intern at KANINI Software Solutions in Product Engineering Department using ReactJS, Bootstrap",
-    className: "md:col-span-2",
-    thumbnail: "./exp1.svg",
-  },
-  {
-    id: 2,
-    title: "Full-Stack Intern - Ogrelix",
-    desc: "I worked on a real-time project using React.js, Laravel, and MySQL for an Electronics Service Company.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "./exp2.svg",
+    // link: "./ui.apple.com",
+    github: "https://msschennai.in/team",
   },
   {
     id: 3,
-    title: "Freelance Web - Dev Project",
-    desc: "Did the dev of a web-page for a client, from initial concept to deployment on web.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "./exp3.svg",
+    title: "Ambulance Connector App",
+    des: "Built a dual-interface app connecting patients to drivers instantly, with location sharing and hospital guidance. Aimed at emergency response optimization.",
+    img: "./p3.svg",
+    iconLists: [
+      "./js.svg",
+      "./re.svg",
+      "./tail.svg",
+      "./svg/skills/firebase.svg",
+      "./git.svg",
+    ],
+    // link: "./ui.aiimg.com",
+    github: "https://github.com/sanjeevveerapandian/MedRush",
   },
   {
-    id: 4,
-    title: "Developing a Project for myself",
-    desc: "Started a project on creating a Portfolio Builder, with using modern frontend technologies and a full-stack Banking-Web App.",
-    className: "md:col-span-2",
-    thumbnail: "./exp4.svg",
+    id: 1,
+    title: "Kanini Assessment - Frontend",
+    des: "Developed responsive assessment and workspace frontend using React.js and Bootstrap at Kanini. Created reusable components and a user-friendly interface for managing tasks and assessments.",
+    img: "./p1.png",
+    iconLists: ["./js.svg", "./re.svg", "./tail.svg", "./git.svg"],
+    // link: "/ui.earth.com",
+    github:
+      "https://github.com/sanjeevveerapandian/Kanini-Intern-Project-1-KaniniAssessment",
+  },
+  {
+    id: 2,
+    title: "Kanini Workspace - Frontend",
+    des: "Built a responsive workspace interface using React and Bootstrap. Enhanced user interaction with real-time data and reusable components.",
+    img: "./p2.svg",
+    iconLists: ["./js.svg", "./re.svg", "./bstrap.svg", "./git.svg"],
+    link: "./ui.yoom.com",
+    github:"https://github.com/sanjeevveerapandian/Kanini-Intern-Project-2-Kanini-Workspace"
   },
 ];
+
+// export const workExperience = [
+//   {
+//     id: 1,
+//     title: "Frontend Intern – KANINI Software Solutions",
+//     desc: "Completed a 1-month internship in July 2024 under the Product Engineering Department. Developed responsive UI components using React.js and Bootstrap, collaborating with senior developers on building real-time dashboards.",
+//     period: "July 2024",
+//     thumbnail: "./exp1.svg",
+//   },
+//   {
+//     id: 2,
+//     title: "Full-Stack Intern – Ogrelix",
+//     desc: "Worked on a full-stack electronics service application using React.js, Laravel, and MySQL. Focused on backend optimization and frontend dashboard development during the internship in June 2024.",
+//     period: "June 2024",
+//     thumbnail: "./exp2.svg",
+//   },
+//   {
+//     id: 3,
+//     title: "Part-time Developer – Ogrelix (Current)",
+//     desc: "Since September 2024, contributing to production-level feature updates, bug fixes, UI/UX refinements, and API integrations as a part-time developer at Ogrelix. Collaborating with the team to improve overall platform performance.",
+//     period: "Sep 2024 – Present",
+//     thumbnail: "./exp2.svg",
+//   },
+// ];
+
 
 export const socialMedia = [
   {

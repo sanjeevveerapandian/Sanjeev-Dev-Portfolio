@@ -1,95 +1,84 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { FaLocationArrow } from "react-icons/fa6";
-
 import { projects } from "@/data";
-import { PinContainer } from "./ui/Pin";
 
-const RecentProjects = () => {
+export default function RecentProjects() {
   return (
-    <div id="projects">
-      <div className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
-        {/* Background Glow */}
-        <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl opacity-20"></div>
-
-        {/* Gradient Separator */}
-        <div className="flex justify-center -translate-y-[1px]">
-          <div className="w-3/4">
-            <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent w-full" />
-          </div>
+    <>
+      {/* Decorative Top Glow */}
+      <div className="flex justify-center -translate-y-[1px]">
+        <div className="w-3/4">
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-orange-400 to-transparent w-full" />
         </div>
       </div>
-      <div className="py-20">
-        <h1 className="heading text-white-100">
-          My <span className="text-purple">Recent Projects</span>
-        </h1>
-        <div className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10">
-          {projects.map((item) => (
-            <div
-              className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]"
+
+      <section
+        id="projects"
+        className="relative py-24 px-4 sm:px-8 max-w-6xl mx-auto"
+      >
+        {/* Section Title */}
+        <h2 className="text-center text-4xl font-bold text-white">
+          <span className="text-white">Recent </span>
+          <span className="text-orange-400">Projects</span>
+        </h2>
+
+        {/* Projects Grid */}
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10">
+          {projects.map((item, index) => (
+            <motion.div
               key={item.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group relative rounded-2xl border border-slate-700/40 bg-gradient-to-br from-slate-800/90 to-slate-700/50 p-6 backdrop-blur-lg shadow-xl hover:shadow-orange-500/20 transition-all duration-500"
             >
-              <PinContainer
-                title="Projects"
-                href="https://twitter.com/mannupaaji"
-              >
-                <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">
-                  <div
-                    className="relative w-full h-full overflow-hidden lg:rounded-3xl"
-                    style={{ backgroundColor: "#13162D" }}
-                  >
-                    <img src="./bg.png" alt="" />
-                  </div>
-                  <img
-                    src={item.img}
-                    alt="cover"
-                    className="z-10 absolute bottom-0"
-                  />
+              {/* Cover Image */}
+              <div className="relative w-full h-52 rounded-xl overflow-hidden mb-6">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+
+              {/* Title & Description */}
+              <h3 className="text-xl font-semibold text-white group-hover:text-orange-400 transition-colors">
+                {item.title}
+              </h3>
+              <p className="text-slate-300 text-sm mt-2 mb-4 line-clamp-3">
+                {item.des}
+              </p>
+
+              {/* Icons & Code Link */}
+              <div className="flex items-center justify-between mt-6">
+                <div className="flex items-center -space-x-2">
+                  {item.iconLists.map((icon, idx) => (
+                    <div
+                      key={idx}
+                      className="w-8 h-8 bg-black border border-white/20 rounded-full flex justify-center items-center"
+                    >
+                      <img src={icon} alt="tech-icon" className="p-1" />
+                    </div>
+                  ))}
                 </div>
 
-                <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
-                  {item.title}
-                </h1>
-
-                <p
-                  className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2"
-                  style={{
-                    color: "#BEC1DD",
-                    margin: "1vh 0",
-                  }}
+                <a
+                  href={item.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center text-orange-400 hover:text-orange-300 transition-colors"
                 >
-                  {item.des}
-                </p>
-
-                <div className="flex items-center justify-between mt-7 mb-3">
-                  <div className="flex items-center">
-                    {item.iconLists.map((icon, index) => (
-                      <div
-                        key={index}
-                        className="border border-white/[.2] rounded-full bg-black lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center"
-                        style={{
-                          transform: `translateX(-${5 * index + 2}px)`,
-                        }}
-                      >
-                        <img src={icon} alt="icon5" className="p-2" />
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex justify-center items-center">
-                    <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-                      Code Base
-                    </p>
-                    <FaLocationArrow className="ms-3" color="#CBACF9" />
-                  </div>
-                </div>
-              </PinContainer>
-            </div>
+                  <span className="text-sm font-medium">Code Base</span>
+                  <FaLocationArrow className="ml-2" />
+                </a>
+              </div>
+            </motion.div>
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
-};
-
-export default RecentProjects;
+}

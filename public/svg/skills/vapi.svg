@@ -1,0 +1,9 @@
+<svg width="160" height="40" viewBox="0 0 160 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon V -->
+  <path d="M10 8L20 32L30 8" stroke="#8B5CF6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Text -->
+  <text x="40" y="28" fill="#FFFFFF" font-size="20" font-family="Segoe UI, sans-serif" font-weight="600">
+    vapi
+  </text>
+</svg>
