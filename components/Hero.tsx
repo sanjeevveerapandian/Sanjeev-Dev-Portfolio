@@ -5,6 +5,7 @@ import { socialMedia } from "@/data";
 import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
@@ -39,23 +40,29 @@ const Hero = () => {
       {/* Main content */}
       <div className="flex justify-center relative my-20 z-10">
         <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-          {/* Small Intro Line */}
+          {/* Intro Line */}
           <p className="text-sm md:text-base text-center text-blue-100 mb-3">
             Hi, I’m
           </p>
 
-          {/* Typing Effect with Colored Name */}
-          <TextGenerateEffect className="text-center text-[34px] md:text-5xl lg:text-6xl font-semibold transition duration-300">
+          {/* Name with smooth transition */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-center text-[34px] md:text-5xl lg:text-6xl font-semibold mb-2"
+          >
             Sanjeev <span className="text-orange-400">Veerapandian</span>
-          </TextGenerateEffect>
+          </motion.h1>
 
-          {/* Full-Stack Developer Line */}
-          <p className="text-center text-lg md:text-xl font-medium mt-4">
-            <span className="text-white">Full-Stack</span>{" "}
-            <span className="text-purple-500">Developer</span>
-          </p>
+          {/* Typing role */}
+          <TextGenerateEffect
+            className="text-center text-lg md:text-xl font-medium mt-2"
+            textClassName=""
+            words="Full-Stack Developer"
+          />
 
-          {/* Social media icons */}
+          {/* Social Media */}
           <div className="flex items-center md:gap-3 gap-6 pt-6">
             {socialMedia.map((info) => (
               <a
@@ -64,9 +71,9 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 cursor-pointer flex justify-center items-center
-        backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200
-        rounded-lg border border-black-300 transition-all duration-300
-        hover:bg-purple-600 hover:scale-110 hover:shadow-lg hover:border-purple-400"
+                  backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-black-200
+                  rounded-lg border border-black-300 transition-all duration-300
+                  hover:bg-purple-600 hover:scale-110 hover:shadow-lg hover:border-purple-400"
               >
                 <img
                   src={info.img}
@@ -79,7 +86,7 @@ const Hero = () => {
             ))}
           </div>
 
-          {/* Resume button */}
+          {/* Resume Button */}
           <div className="mt-6">
             <a
               href="https://drive.google.com/file/d/1PyS1Yedsw-OQ8zK6Y4wu_8tC6WgSX6mx/view"

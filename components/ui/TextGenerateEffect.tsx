@@ -1,37 +1,43 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useAnimate, stagger } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { useMounted } from "@/hooks/useMounted";
+import React, { useEffect, useRef, useState } from "react";
 
 type Props = {
   words?: string;
-  children?: React.ReactNode;
   className?: string;
+  textClassName?: string;
 };
 
-export const TextGenerateEffect = ({ words, children, className }: Props) => {
-  const [scope, animate] = useAnimate();
-  const wordsArray = typeof words === "string" ? words.split(" ") : [];
+export const TextGenerateEffect = ({
+  words = "Full Stack Developer",
+  className,
+  textClassName,
+}: Props) => {
+  const mounted = useMounted();
+  const [displayedText, setDisplayedText] = useState("");
+  const indexRef = useRef(0);
 
   useEffect(() => {
-    if (!wordsArray.length) return;
-    animate(
-      scope.current,
-      { opacity: [0, 1], y: [10, 0] },
-      { duration: 0.5, delay: stagger(0.05) }
-    );
-  }, [words]);
+    if (!mounted) return;
+
+    const interval = setInterval(() => {
+      setDisplayedText(words.slice(0, indexRef.current));
+      indexRef.current++;
+
+      if (indexRef.current > words.length) {
+        clearInterval(interval);
+      }
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [mounted, words]);
+
+  if (!mounted) return null;
 
   return (
-    <div className={cn("font-bold", className)} ref={scope}>
-      {wordsArray.length
-        ? wordsArray.map((word, i) => (
-            <span key={i} className="inline-block mr-2">
-              {word}
-            </span>
-          ))
-        : children}
+    <div className={className}>
+      <h1 className={textClassName}>{displayedText}</h1>
     </div>
   );
 };
